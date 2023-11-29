@@ -5,6 +5,19 @@ import rsa
 # key length as its parameter
 # key length should be atleast 16
 publicKey, privateKey = rsa.newkeys(512)
+
+with open('PublicKey','wb') as file:
+	file.write(publicKey)
+     
+
+#export private key for later use
+with open('PrivateKey', 'wb') as file:
+    file.write(privateKey)
+
+
+
+
+
  
 # this is the string that we will be encrypting
 
