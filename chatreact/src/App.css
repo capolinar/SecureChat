@@ -55,7 +55,6 @@ form {
 	max-width: 80%;
 	padding: 1rem;
 	border: 1px solid rgba(0, 0, 0, 0.1);
-	background: #fff;
   }
   form > div {
 	display: flex;
