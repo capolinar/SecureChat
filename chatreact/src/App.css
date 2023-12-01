@@ -1,27 +1,61 @@
+body {
+	background-color: black;
+  }
 h1 {
 	display: flexbox;
 	text-align: center;
 	margin-left: auto;
 	margin-right:auto;
-	background-color: lightgray;
 	width: 600px;
 }
-
 p {
 	display: flexbox;
 	text-align: center;
 	margin-left: auto;
 	margin-right:auto;
 	width: 600px;
-	background-color: lightblue;
+	font-weight: bold;
+	font-size: 25px;
+	color:white;
+	background-color: #4f4969;
 }
-
+.App {
+	text-align: center;
+	max-width: 1000px;
+	margin: 0 auto;
+	
+  }
+.App header {
+	background-color: #181717;
+	height: 10vh;
+	min-height: 50px;
+	color: white;
+	position: fixed;
+	width: 100%;
+	max-width: 1000px;
+	top: 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	z-index: 99;
+	padding: 10px;
+	box-sizing: border-box;
+	
+}
+.App body {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	min-height: 100vh;
+	background-color: #4f4969;
+  }
 form {
 	margin: 3rem auto;
 	width: 500px;
 	max-width: 80%;
 	padding: 1rem;
 	border: 1px solid rgba(0, 0, 0, 0.1);
+	background: #fff;
   }
   form > div {
 	display: flex;
@@ -50,7 +84,7 @@ form {
   }
   .input > div {
 	padding: 0.5rem 1rem;
-	background: #e34728;
+	background: #4f4969;
 	margin-left: 0.5rem;
 	color: #fff;
 	font-weight: 700;
@@ -69,17 +103,66 @@ form {
 	display: flex;
 	justify-content: center;
   }
-  .submit-btn {
+  .messageBar{
+	background-color: #181717;
+	height: 10vh;
+	min-height: 50px;
+	position: fixed;
+	width: 100%;
+	max-width: 1000px;
+	bottom: 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px;
+	box-sizing: border-box;
+  }
+  .signInBtn {
 	width: 100%;
 	padding: 0.5rem 1rem;
-	border: 1px solid #e34728;
+	border: 1px solid #4f4969;
 	background: #fff;
 	margin: 1.2rem 0;
-	color: #e34728;
+	color: #4f4969;
 	font-size: 0.9rem;
 	font-weight: 700;
 	cursor: pointer;
   }
+  .signOutBtn {
+	width: 25%;
+	padding: 0.5rem 1rem;
+	border: 1px solid #4f4969;
+	background: #fff;
+	margin: 1.2rem 1.2rem;
+	color: #4f4969;
+	font-size: 0.9rem;
+	font-weight: 700;
+	cursor: pointer;
+
+}
+  .sendMsgBtn {
+	width: 25%;
+	padding: 0.5rem 1rem;
+	border: 1px solid #4f4969;
+	background: #fff;
+	margin: 1.2rem 1.2rem;
+	color: #4f4969;
+	font-size: 0.9rem;
+	font-weight: 700;
+	cursor: pointer;
+  }
+  .sendMsgInp{
+	width: 50%;
+	padding: 0.5rem 1rem;
+	border: 1px solid #4f4969;
+	background: #fff;
+	margin: 1.2rem 1.2rem;
+	color: #4f4969;
+	font-size: 0.9rem;
+	font-weight: 700;
+	float: left;
+  }
+
   .dialog-box {
 	margin: 0.5rem 0;
 	display: grid;
