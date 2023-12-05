@@ -5,6 +5,7 @@ HOST = '127.0.0.1'
 PORT = 65432
 
 CLIENT_LIST = []
+NICKNAMES = []
 
 
 def chat_server_single():
@@ -39,18 +40,24 @@ def chat_server():
                     break
                 broadcast(message)
             except:
+                index = CLIENT_LIST.index(conn)
                 CLIENT_LIST.remove(conn)
                 conn.close()
-                print(f'A connection has been removed')
+                print(f'{NICKNAMES[index]} has left the chat')
+                NICKNAMES.pop(index)
                 break
 
     while True:
         conn, address = server_socket.accept()
         print(f'Connected with user at address {address}')
 
+        conn.send(f'GET_NICKNAME'.encode())
+        nickname = conn.recv(1024).decode()
         CLIENT_LIST.append(conn)
-        conn.send(b'You have connected to the server!')
-        broadcast(b'User has joined the chat!')
+        NICKNAMES.append(nickname)
+        print(f'Nickname of user is "{nickname}"')
+        conn.send(f'You have successfully connected to the server!\n'.encode())
+        broadcast(f'{nickname} has joined the chat!'.encode())
 
         thread = threading.Thread(target=handle, args=(conn,))
         thread.start()
