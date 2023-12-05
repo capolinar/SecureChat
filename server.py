@@ -29,12 +29,14 @@ def chat_server():
 
     def broadcast(message):
         for client in CLIENT_LIST:
-            client.send(message.encode('utf-8'))
+            client.send(message)
 
     def handle(conn):
         while True:
             try:
                 message = conn.recv(1024)
+                if not message:
+                    break
                 broadcast(message)
             except:
                 CLIENT_LIST.remove(conn)
@@ -47,8 +49,8 @@ def chat_server():
         print(f'Connected with user at address {address}')
 
         CLIENT_LIST.append(conn)
-        conn.send(f'You have connected to the server!'.encode('utf-8'))
-        broadcast(f'User has joined the chat!')
+        conn.send(b'You have connected to the server!')
+        broadcast(b'User has joined the chat!')
 
         thread = threading.Thread(target=handle, args=(conn,))
         thread.start()
