@@ -1,7 +1,7 @@
 import socket
 import threading
 
-HOST = ''
+HOST = '127.0.0.1'
 PORT = 65432
 
 CLIENT_LIST = []
@@ -29,7 +29,7 @@ def chat_server():
 
     def broadcast(message):
         for client in CLIENT_LIST:
-            client.send(message)
+            client.send(message.encode('utf-8'))
 
     def handle(conn):
         while True:
@@ -47,8 +47,8 @@ def chat_server():
         print(f'Connected with user at address {address}')
 
         CLIENT_LIST.append(conn)
+        conn.send(f'You have connected to the server!'.encode('utf-8'))
         broadcast(f'User has joined the chat!')
-        conn.send(f'You have connected to the server!')
 
         thread = threading.Thread(target=handle, args=(conn,))
         thread.start()
