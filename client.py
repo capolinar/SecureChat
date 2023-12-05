@@ -13,6 +13,7 @@ client_socket.connect((HOST, PORT))
 
 
 # Function to send messages
+
 def send_message():
     while True:
         message = input("You: ")
@@ -38,3 +39,4 @@ receive_thread = threading.Thread(target=receive_message)
 
 send_thread.start()
 receive_thread.start()
+print("Please enter your name: ")
