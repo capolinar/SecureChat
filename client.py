@@ -12,7 +12,7 @@ PORT = 65432
 
 #AES Encryption
 def encrypt_message(key, message):
-    iv = b'\x00' * 16  # Use a secure random generator for a real implementation
+    iv = b'\x00' * 16  
 
     if isinstance(message, str):
         message_bytes = message.encode()
