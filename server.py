@@ -79,7 +79,11 @@ def chat_server():
         
         for client in CLIENT_LIST:
             encrypted_message = encrypt_message(AES_KEY, message)
+<<<<<<< Updated upstream
             client.send(encrypted_message.encode('utf-8'))
+=======
+            client.sendall(encrypted_message.encode('utf-8'))
+>>>>>>> Stashed changes
 
     def handle(conn, nickname):
         while True:
@@ -88,12 +92,18 @@ def chat_server():
                 if not encrypted_message:
                     break  
                 message = decrypt_message(AES_KEY, encrypted_message)
+<<<<<<< Updated upstream
                 broadcast(f'{nickname}: {message}')
+=======
+                
+                if message != "":
+                    broadcast(f'{nickname}: {message}')
+>>>>>>> Stashed changes
             except:
                 index = CLIENT_LIST.index(conn)
                 CLIENT_LIST.remove(conn)
                 conn.close()
-                print(f'{NICKNAMES[index]} has left the chat')
+                broadcast(f'{NICKNAMES[index]} has left the chat')
                 NICKNAMES.pop(index)
                 break
 
