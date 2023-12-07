@@ -4,12 +4,9 @@ from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import padding
 from base64 import b64encode, b64decode
-<<<<<<< Updated upstream
-=======
 import tkinter as tk
 from tkinter import scrolledtext
 from tkinter import messagebox
->>>>>>> Stashed changes
 
 # Client configuration
 HOST = '127.0.0.1'  # Loopback address
@@ -77,9 +74,6 @@ key = import_key_from_file("AES_KEY")
 # Create a socket
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-<<<<<<< Updated upstream
-nickname = input("Please enter nickname: ")
-=======
 #AES Encryption
 def encrypt_message(key, message):
     iv = b'\x00' * 16  
@@ -156,22 +150,14 @@ def append_message(message):
     message_box.config(state=tk.NORMAL)
     message_box.insert(tk.END, message + '\n')
     message_box.config(state=tk.DISABLED)
->>>>>>> Stashed changes
 
 
 # Function to send messages
 def send_message():
-<<<<<<< Updated upstream
-    while True:
-        message = f'{input()}'
-        encrypted_message = encrypt_message(key, message)
-        client_socket.send(encrypted_message.encode('utf-8'))
-=======
     message = message_textbox.get()
     encrypted_message = encrypt_message(key, message)
     client_socket.sendall(encrypted_message.encode('utf-8'))
     message_textbox.delete(0, len(message))
->>>>>>> Stashed changes
 
 #tkinter gui
 root = tk.Tk()
@@ -220,12 +206,8 @@ def receive_message():
                 print("Nickname =" + nickname_textbox.get())
             else:
                 decrypted_message = decrypt_message(key, message)
-<<<<<<< Updated upstream
-                print(decrypted_message)
-=======
                 append_message(decrypted_message)
 
->>>>>>> Stashed changes
         except Exception as e:
             # Handle any exceptions (e.g., server disconnects unexpectedly)
             print(f"[ERROR] {str(e)}")
