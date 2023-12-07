@@ -20,47 +20,6 @@ FONT = ("Arial", 17)
 BUTTON_FONT = ("Arial", 15)
 SMALL_FONT = ("Arial", 13)
 
-#AES Encryption
-def encrypt_message(key, message):
-    iv = b'\x00' * 16  
-
-    if isinstance(message, str):
-        message_bytes = message.encode()
-    elif isinstance(message, bytes):
-        message_bytes = message
-    else:
-        raise TypeError("message must be a string or bytes-like object")
-
-    padder = padding.PKCS7(128).padder()
-    padded_data = padder.update(message_bytes) + padder.finalize()
-
-    cipher = Cipher(algorithms.AES(key), modes.CFB(iv), backend=default_backend())
-    encryptor = cipher.encryptor()
-    cipher_text = encryptor.update(padded_data) + encryptor.finalize()
-
-    result = iv + cipher_text
-    return b64encode(result).decode()
-#decryption
-def decrypt_message(key, encrypted_message):
-    try:
-        encrypted_data = b64decode(encrypted_message)
-        iv = encrypted_data[:16]
-        cipher_text = encrypted_data[16:]
-
-        cipher = Cipher(algorithms.AES(key), modes.CFB(iv), backend=default_backend())
-        decryptor = cipher.decryptor()
-        decrypted_padded_data = decryptor.update(cipher_text) + decryptor.finalize()
-
-        unpadder = padding.PKCS7(128).unpadder()
-        decrypted_data = unpadder.update(decrypted_padded_data) + unpadder.finalize()
-
-        return decrypted_data.decode()
-
-    except ValueError as e:
-        #print(f"[ERROR] Incorrect padding: {str(e)}")
-        print(f"Errors: ")
-        return None
-
 #AES Key import
 def import_key_from_file(AES_KEY):
     with open(AES_KEY, "rb") as key_file:
@@ -68,7 +27,6 @@ def import_key_from_file(AES_KEY):
     
 
 key = import_key_from_file("AES_KEY")
-
 
 
 # Create a socket
@@ -115,13 +73,6 @@ def decrypt_message(key, encrypted_message):
         print(f"Errors: ")
         return None
 
-#AES Key import
-def import_key_from_file(AES_KEY):
-    with open(AES_KEY, "rb") as key_file:
-        return key_file.read()
-    
-
-key = import_key_from_file("AES_KEY")
 
 def connect():
     client_socket.connect((HOST, PORT))
