@@ -26,8 +26,8 @@ def import_key_from_file(AES_KEY):
         return key_file.read()
     
 
-key = import_key_from_file("AES_KEY")
-key2 = import_key_from_file("AES_KEY2")
+key = import_key_from_file("AES_KEY2") #Wrong key used for demo, should be AES_KEY
+
 
 # Create a socket
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -156,8 +156,7 @@ def receive_message():
             if message == 'GET_NICKNAME':
                 print("Nickname =" + nickname_textbox.get())
             else:
-                #decrypted_message = decrypt_message(key2, message)  #For demo purposes, decryption is taken out, only prints the cipher text
-                decrypted_message = message
+                decrypted_message = decrypt_message(key, message)
                 append_message(decrypted_message)
 
         except Exception as e:
